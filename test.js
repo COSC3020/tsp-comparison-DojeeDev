@@ -28,8 +28,8 @@ while (true) {
   var row = [i, hk_time, ls_time, hk_path_len, ls_path_len];
   data.push(row);
   
-  var minTime = min(hk_time, ls_time);
-  var mins = minTime * 60000;
+  var minTime = Math.min(hk_time, ls_time);
+  var mins = minTime / 60000;
   if (mins >= 60) { break; }
   else { i *= 10 };
 }
