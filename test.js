@@ -4,14 +4,13 @@ const { performance } = require('perf_hooks');
 eval(fs.readFileSync('hk.js')+'');
 eval(fs.readFileSync('ls.js')+'');
 
+const maxN = 512;
 
 var data = 
   [["number of cities", "held karp time ms", "local search time ms", 
     "held karp path length", "local search path length"]];
 
-var i = 1;
-
-while (true) {
+for (var i = 1; i <= maxN; i *= 2) {
   var dm = randDM(i);
 
   const st_hk = performance.now()
@@ -24,14 +23,10 @@ while (true) {
   const et_ls = performance.now();
   const ls_time = et_ls - st_ls;
   
-  // prompted chatgpt: "how to write values to csv file js"
   var row = [i, hk_time, ls_time, hk_path_len, ls_path_len];
+  console.log(row);
+
   data.push(row);
-  
-  var minTime = Math.min(hk_time, ls_time);
-  var mins = minTime / 60000;
-  if (mins >= 60) { break; }
-  else { i *= 10 };
 }
 
 const csvContent = data.map(row => row.join(',')).join('\n');
