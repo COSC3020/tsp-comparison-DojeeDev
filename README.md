@@ -25,7 +25,7 @@ to this markdown file.
 
 ### Analysis
 
-I made a program `test.js` that will test the two programs with increasing by powers of 2 input sizes. The inputs are randomly generated. Then the data is saved to a csv file. My program crashed for inputs bigger than 1000, which meant I couldn't get a run time of an hour yet.
+I made a program `test.js` that will test the two programs with increasing by powers of 2 input sizes. The inputs are randomly generated. Then the data is saved to a csv file. My program crashed for inputs bigger than 1000 when testing held karp, which meant I couldn't get a run time of an hour yet.
 
 ![cities vs time](./cities-vs-time.png)
 
