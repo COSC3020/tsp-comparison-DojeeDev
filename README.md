@@ -27,11 +27,11 @@ to this markdown file.
 
 I made a program `test.js` that will test the two programs with increasing by powers of 2 input sizes. The inputs are randomly generated. Then the data is saved to a csv file. My program crashed for inputs bigger than 1000 when testing held karp, which meant I couldn't get a run time of an hour yet.
 
-![cities vs time](./cities-vs-time.png)
+![cities v.s. time](./cities-vs-time.png)
 
 The held karp programs appears to grow exponentially while it's hard see the local search line, it grows in a linear fashion. One thing to note is that for larger inputs it's sometimes faster than the smaller input, due to the random factor. 
 
-![cities vs path](./cities-vs-path-len.png)
+![cities v.s. path](./cities-vs-path-len.png)
 
 In this graph you can see they both grow linearly, however as things get bigger the local search path cost gets larger than the held karp path. It's always greater or less than the held karp path because hk finds the best path. While local search does the best path within the iteration limit. This becomes farther from the best path as the input size grows because in my implementation the iteration limit does not scale at the same rate as n!.
 
