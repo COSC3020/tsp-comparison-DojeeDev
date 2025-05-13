@@ -4,13 +4,13 @@ const { performance } = require('perf_hooks');
 eval(fs.readFileSync('hk.js')+'');
 eval(fs.readFileSync('ls.js')+'');
 
-const maxN = 512;
+const maxN = 20;
 
 var data = 
   [["number of cities", "held karp time ms", "local search time ms", 
     "held karp path length", "local search path length"]];
 
-for (var i = 1; i <= maxN; i *= 2) {
+for (var i = 1; i <= maxN; i++ ) {
   var dm = randDM(i);
 
   const st_hk = performance.now()

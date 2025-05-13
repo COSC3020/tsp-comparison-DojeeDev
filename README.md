@@ -25,16 +25,18 @@ to this markdown file.
 
 ### Analysis
 
-I made a program `test.js` that will test the two programs with increasing by powers of 2 input sizes. The inputs are randomly generated. Then the data is saved to a csv file. My program crashed for inputs bigger than 1000 when testing held karp, which meant I couldn't get a run time of an hour yet.
+I made a program `test.js` that will test the two programs with increasing by powers of 2 input sizes. The inputs are randomly generated. Then the data is saved to a csv file. I had issues with my previous implementation of held karp so I am using another students code who is linked below. The times have gone up for held karp suggesting that the previous version I wrote here was not finding the optimal path. This one is finding the optimal path I believe, I only got up to 28 min because I was busy with exams most of the day and didn't think to try someone else's code until late tonight. However, I estimate that an input size of 13 will be over an hour as I have been waiting for about 47 min now.
 
 ![cities v.s. time](./cities-vs-time.png)
 
-The held karp programs appears to grow exponentially while it's hard see the local search line, it grows in a linear fashion. One thing to note is that for larger inputs it's sometimes faster than the smaller input, due to the random factor. 
+The held karp programs appears to grow exponentially while it's hard see the local search line, it grows in a linear fashion. One thing to note is that for larger inputs it's sometimes faster than the smaller input, due to the random factor. After 10 cities the difference is rather stark and gets higher from there.
 
 ![cities v.s. path](./cities-vs-path-len.png)
 
-In this graph you can see they both grow linearly, however as things get bigger the local search path cost gets larger than the held karp path. It's always greater or less than the held karp path because hk finds the best path. While local search does the best path within the iteration limit. This becomes farther from the best path as the input size grows because in my implementation the iteration limit does not scale at the same rate as n!.
+In this graph you can see they both grow linearly, however as things get bigger the local search path cost gets larger than the held karp path. It certainly should always be greater than or equal held karp since hk finds the very optimal solution while local search approximates it. I assume there is an issue in my local search code causing an error which is why it is giving a distance that is smaller than the one given by hk for inputs smaller than 4. I've tested this and it is always for inputs less than 4 that my local search code gives me paths that are smaller than held karp so I assume that my code has a bug in it. However, for inputs larger than 4 you can see that it is larger than held karp and grows at a faster rate. This is due to the fact that the way my code chooses how long to iterate grows at a slower rate than the complexity of the tsp problem.
 
+Source of Held-Karp code: https://github.com/COSC3020/tsp-held-karp-noahcanen/blob/main/code.js
 
 I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
+
 

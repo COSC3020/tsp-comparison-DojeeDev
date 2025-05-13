@@ -1,43 +1,31 @@
-//Asked chat gpt how to use maps for memoization
+//My code wasn't working right so I'm using the code from another student in the class:
+//Source:
+// https://github.com/COSC3020/tsp-held-karp-noahcanen/blob/main/code.js
+
+
 function tsp_hk(distance_matrix) {
-  var city_arr = Object.keys(distance_matrix);
-  var cities = new Set(city_arr);
-
-  var memo = new Map();
-  var minTour = Infinity;
-
-  for (c of cities) {
-    minTour = Math.min(minTour, heldKarp(cities, c, distance_matrix, memo));
-  }
-  return minTour;
+    if (distance_matrix.length <= 1) return 0
+    min_val = Infinity
+    cities = []
+    for (var i = 0; i < distance_matrix.length; i++) {cities.push(i)}
+    for (var i = 0; i < distance_matrix.length; i++) {
+        min_val = Math.min(min_val, tspPath(distance_matrix, i,cities,[]))
+    }
+    return min_val
 }
-
-function heldKarp(cities, start, dm, memo) {
-  if (cities.size <= 2) {
-    for (c of cities) {
-      if (c != start) { return dm[start][c]; }
+function tspPath(graph, start, cities,memory){
+    place = JSON.stringify(cities) + start
+    if(memory[place] != null){return memory[place]}
+    if(cities.length == 2){
+        return memory[place] = graph[cities[0]][cities[1]]
     }
-    return 0;
-  }
-
-  let key = [...cities].sort().join(',') + '|' + start;
-  if (memo.has(key)) { return memo.get(key); }
-
-  var minDis = Infinity;
-  var city;
-  for (c of cities) {
-    if (c != start) {
-      var dis = dm[start][c];
-      if (dis < minDis) { 
-        minDis = dis; 
-        city = c;
-      }
+    min_val = Infinity
+    let newCities = cities.filter(item => item != start); 
+    for (var i = 0; i < cities.length; i++) {
+        if (cities[i] != start){
+        min_val = Math.min(min_val, (tspPath(graph, cities[i],newCities,memory) + graph[start][cities[i]]))
+        }
     }
-  }
-  var nextCities = new Set(cities);
-  nextCities.delete(start);
-
-  var result = heldKarp(nextCities, city, dm, memo) + minDis;
-  memo.set(key, result);
-  return result;
+    memory[place] = min_val
+    return min_val
 }
